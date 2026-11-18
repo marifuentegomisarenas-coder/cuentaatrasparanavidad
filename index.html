@@ -1,0 +1,148 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="robots" content="noindex"><title>Pollito, pollito</title>
+<style>
+:root{--bg:#b3131b;--card:#fffaf5;--tx:#3a1a1d;--ac:#c0392b;--hi:#ffd83a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#7d0d14;--card:#2a1618;--tx:#fbe9e6;--ac:#ff7b6b}}
+:root[data-theme="dark"]{--bg:#7d0d14;--card:#2a1618;--tx:#fbe9e6;--ac:#ff7b6b}
+*{box-sizing:border-box}html{background:var(--bg);scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:#fff;font-family:Georgia,'Times New Roman',serif;min-height:100vh}
+[hidden]{display:none!important}
+.snow{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.snow span{position:absolute;top:-30px;color:#fff;opacity:.85;animation:fall linear infinite}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+.wrap{position:relative;z-index:1;max-width:480px;margin:0 auto;padding:24px 18px 40px;text-align:center}
+h1{font-size:2rem;margin:0 0 6px;text-shadow:0 2px 0 rgba(0,0,0,.2)}
+.q{font-size:1.2rem;margin:0 0 18px;opacity:.95}
+.chick{width:210px;max-width:60%;animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px)}}
+.form{display:flex;flex-direction:column;gap:10px;margin-top:10px}
+input{width:100%;padding:14px;border-radius:14px;border:3px solid #fff;background:#fff;color:#3a1a1d;font-size:1.1rem;text-align:center;font-family:system-ui,sans-serif}
+button.main{padding:14px;border:0;border-radius:14px;background:var(--hi);color:#7a0c12;font-size:1.05rem;font-weight:700;cursor:pointer;font-family:system-ui,sans-serif}
+button.ghost{margin-top:14px;background:none;border:2px solid #fff;color:#fff;border-radius:14px;padding:10px 16px;cursor:pointer;font-family:system-ui,sans-serif}
+.msg{min-height:1.4em;margin-top:8px;font-family:system-ui,sans-serif;font-size:.95rem}
+.shake{animation:sh .35s}@keyframes sh{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}
+.egg{position:relative;aspect-ratio:3/4;border:4px solid #fff;border-radius:50% 50% 50% 50%/62% 62% 38% 38%;overflow:hidden;padding:0;background:#ffe9a8;cursor:pointer}
+.egg img{width:100%;height:100%;object-fit:cover;display:block}
+.egg .e{display:flex;align-items:center;justify-content:center;height:100%;font-size:2rem}.egg.lock{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.5);cursor:default}.egg.lock .e{opacity:.75}.egg.lock i{background:rgba(0,0,0,.28)}
+.egg i{position:absolute;bottom:9%;left:50%;transform:translateX(-50%);background:#b3131b;color:#fff;font-style:normal;padding:2px 12px;border-radius:99px;font-family:system-ui,sans-serif;font-weight:700}
+.egg em{position:absolute;top:10%;left:50%;transform:translateX(-50%);background:var(--hi);color:#7a0c12;font-style:normal;font-size:.75rem;font-weight:700;padding:2px 8px;border-radius:99px;font-family:system-ui,sans-serif;animation:pulse 1s infinite alternate}
+@keyframes pulse{to{transform:translateX(-50%) scale(1.12)}}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;padding:16px;z-index:5}
+.modal.on{display:flex}
+.box{background:var(--card);color:var(--tx);border-radius:18px;padding:20px;max-width:440px;width:100%;max-height:90vh;overflow:auto;text-align:center}
+.box h2{margin:0 0 10px}.box p{line-height:1.5;font-size:1.05rem}
+.photo{width:100%;border-radius:14px;display:block}
+.ph2{height:220px;border-radius:14px;background:linear-gradient(135deg,#ffb4a8,#ffd9a8);display:flex;align-items:center;justify-content:center;font-size:3rem}
+button.x{background:none;border:0;color:var(--ac);cursor:pointer;font-size:1rem;margin-top:6px}
+.stage{display:grid;place-items:center;height:270px;margin:22px 0 8px}.stage>*{grid-area:1/1}
+.shell{position:relative;width:190px;height:253px}
+.half{position:absolute;inset:0;border-radius:50% 50% 50% 50%/62% 62% 38% 38%;background:linear-gradient(#fff3d6 0 35%,#d62828 35% 42%,#fff3d6 42% 62%,#2e8b57 62% 69%,#fff3d6 69%);box-shadow:inset 0 -10px 0 rgba(0,0,0,.08)}
+.half.top{clip-path:polygon(0 0,100% 0,100% 48%,85% 55%,70% 46%,55% 56%,40% 46%,25% 55%,10% 47%,0 54%)}
+.half.bot{clip-path:polygon(0 54%,10% 47%,25% 55%,40% 46%,55% 56%,70% 46%,85% 55%,100% 48%,100% 100%,0 100%)}
+.crack{position:absolute;left:0;top:44%;width:100%;height:14%;opacity:0;transition:opacity .3s}
+.shell.cracking .crack{opacity:1}
+.shell.wob{animation:wob .45s ease-in-out infinite}
+@keyframes wob{0%,100%{transform:rotate(0)}25%{transform:rotate(-8deg)}75%{transform:rotate(8deg)}}
+.shell.split .top{animation:tp .8s ease-in forwards}.shell.split .bot{animation:bt .8s ease-in forwards}
+@keyframes tp{to{transform:translate(-40px,-70px) rotate(-30deg);opacity:0}}
+@keyframes bt{to{transform:translate(40px,40px) rotate(20deg);opacity:0}}
+.egg.big{width:190px;animation:pop .7s cubic-bezier(.2,1.6,.4,1)}
+@keyframes pop{from{transform:scale(.2);opacity:0}to{transform:scale(1);opacity:1}}
+.hint{margin:6px 0 14px}
+@media (prefers-reduced-motion:reduce){.snow span,.chick,.egg em,.shell.wob,.egg.big{animation:none}}
+</style></head><body>
+<div class="snow" id="snow"></div>
+<main class="wrap" id="home">
+<svg class="chick" viewBox="0 0 200 200" role="img" aria-label="Pollito con gorro de Navidad">
+<ellipse cx="42" cy="125" rx="16" ry="26" fill="#f5c518" transform="rotate(20 42 125)"/><ellipse cx="158" cy="125" rx="16" ry="26" fill="#f5c518" transform="rotate(-20 158 125)"/>
+<circle cx="100" cy="112" r="62" fill="#ffd83a"/>
+<path d="M82 172l-6 10M82 172v11M82 172l6 10M118 172l-6 10M118 172v11M118 172l6 10" stroke="#ff8c1a" stroke-width="4" stroke-linecap="round" fill="none"/>
+<circle cx="80" cy="106" r="7" fill="#222"/><circle cx="120" cy="106" r="7" fill="#222"/><circle cx="82" cy="103" r="2.5" fill="#fff"/><circle cx="122" cy="103" r="2.5" fill="#fff"/>
+<circle cx="66" cy="124" r="9" fill="#ff9aa2" opacity=".6"/><circle cx="134" cy="124" r="9" fill="#ff9aa2" opacity=".6"/>
+<path d="M90 118h20l-10 14z" fill="#ff8c1a"/>
+<path d="M55 142q45 28 90 0l-3 14q-42 26 -84 0z" fill="#2e8b57"/><rect x="118" y="150" width="15" height="30" rx="6" fill="#2e8b57"/><rect x="118" y="160" width="15" height="6" fill="#fff"/>
+<path d="M60 66Q78 8 128 14Q116 40 140 66z" fill="#d62828"/><rect x="54" y="58" width="92" height="18" rx="9" fill="#fff"/><circle cx="130" cy="14" r="10" fill="#fff"/>
+</svg>
+<h1>¡Pollito, pollito!</h1>
+<p class="q">¿Has adivinado la palabra de hoy?</p>
+<div class="form" id="form"><input id="w" placeholder="Escribe la clave…" autocomplete="off" autocapitalize="off"><button class="main" id="go">Comprobar 🥚</button></div>
+<div class="msg" id="m"></div>
+<button class="ghost" id="see" hidden></button>
+</main>
+<main class="wrap" id="eggs" hidden>
+<h1>Tus huevos sorpresa 🥚</h1><p class="q" id="cnt"></p>
+<div class="grid" id="grid"></div>
+<button class="ghost" id="back">← Escribir otra clave</button>
+</main>
+<main class="wrap" id="hatch" hidden>
+<p class="q" id="hmsg"></p>
+<div class="stage"><div class="shell" id="shell"><div class="half top"></div><div class="half bot"></div><svg class="crack" viewBox="0 0 100 20" preserveAspectRatio="none"><polyline points="0,12 10,4 25,13 40,3 55,14 70,3 85,12 100,5" fill="none" stroke="#7a0c12" stroke-width="2.5" vector-effect="non-scaling-stroke"/></svg></div><button class="egg big" id="born" hidden></button></div>
+<p class="q hint" id="hint" hidden>Toca tu huevo de hoy 👆</p>
+<button class="main" id="all" style="width:100%" hidden>Ver toda la colección</button>
+</main>
+<div class="modal" id="modal"><div class="box" id="box"></div></div>
+<script>
+const DAYS=[
+{"d": 1, "h": "b8510932dad3ddf0fc34661a0caf6674e5c0d672e3930c6a736424d4df0e8016", "t": "Texto de ejemplo: aquí irá tu mensaje para el día 1 💛", "img": ""},
+{"d": 2, "h": "9bc033b4f085204bea9f5294125a21a380b4e60cdd197e90f9fa803e2360fa7c", "t": "Texto de ejemplo: aquí irá tu mensaje para el día 2 💛", "img": ""},
+{"d": 3, "h": "f2045ece6e823478d7f59da575a5ad25c091076d5de4ea446e247c9b1a487db8", "t": "Texto de ejemplo: aquí irá tu mensaje para el día 3 💛", "img": ""},
+{"d": 4, "h": "17f291bead3ac4cd32272d0cd9979ecf9dde1aa8ef8310686aae8b3a3d24038b", "t": "Texto de ejemplo: aquí irá tu mensaje para el día 4 💛", "img": ""},
+{"d": 5, "h": "748064be03a08df81e31bd6f9e7e7c4cc9f84b4401b9a3c6e85b7ff816d3ba68", "t": "Texto de ejemplo: aquí irá tu mensaje para el día 5 💛", "img": ""},
+{"d": 6, "h": "57f5e6c4ead9b918c929f30c47facfabf1e91883ec21c6ac8caa623aad326eeb", "t": "Texto de ejemplo: aquí irá tu mensaje para el día 6 💛", "img": ""},
+{"d": 7, "h": "40784b6b7b94fec1aa670bfd33993edc210d5f9141877865af34456713818051", "t": "Texto de ejemplo: aquí irá tu mensaje para el día 7 💛", "img": ""},
+{"d": 8, "h": "9a60b96fd6b3e37ffd9e013b33f9cb92c7723b906780d607186b2f330c4e2692", "t": "Texto de ejemplo: aquí irá tu mensaje para el día 8 💛", "img": ""},
+{"d": 9, "h": "2a173289b6b97de77af27a196f1badae6ad5c01a2bb921afaf976e98c044e556", "t": "Texto de ejemplo: aquí irá tu mensaje para el día 9 💛", "img": ""},
+{"d": 10, "h": "a0f6de05cb3269c888e6fbe14b7316c1406d52ac09e46ebeac42fce0b6696d63", "t": "Texto de ejemplo: aquí irá tu mensaje para el día 10 💛", "img": ""},
+{"d": 11, "h": ["776581edab47392825603de80e05dcccda2edc1e00c4b6c0ba79a2e9df820152", "861a59ab8affe8ebbe02f15497cd094d202b0bbafb0bf6a5e14ec5fbbd898439"], "t": "Texto de ejemplo: aquí irá tu mensaje para el día 11 💛", "img": ""},
+{"d": 12, "h": "5f0358bbc688e67515100d7329b4d68263d5a713645d37609bd7d77e8021bc99", "t": "Texto de ejemplo: aquí irá tu mensaje para el día 12 💛", "img": ""},
+{"d": 13, "h": "da8cf65a526d9eff8f36fafb0007249c20200f639e607aa4316117995b187d22", "t": "Texto de ejemplo: aquí irá tu mensaje para el día 13 💛", "img": ""},
+{"d": 14, "h": "894791017231e5152d889cc8b515fe3c76c615f732a0f16b397817ff99ef31d8", "t": "Texto de ejemplo: aquí irá tu mensaje para el día 14 💛", "img": ""},
+{"d": 15, "h": "d0512cdf5a3ca8df5dac59f03b3da26fa8878d82022a2674e9a182a10c5c8f2e", "t": "Texto de ejemplo: aquí irá tu mensaje para el día 15 💛", "img": ""},
+{"d": 16, "h": "46b05499459ee36074658bc0d3736dfa6d65cc1bccfb82f58a45397cce1ccbdc", "t": "Texto de ejemplo: aquí irá tu mensaje para el día 16 💛", "img": ""},
+{"d": 17, "h": "51054b8a03281fd02034378a5570ae0c970fb1d5d64246e0eb981481c228c108", "t": "Texto de ejemplo: aquí irá tu mensaje para el día 17 💛", "img": ""},
+{"d": 18, "h": "87da8bbbea6db324c6f7da5ab1312dbded82b2e944d50f2a7781a21b433f4aa8", "t": "Texto de ejemplo: aquí irá tu mensaje para el día 18 💛", "img": ""},
+{"d": 19, "h": "0a8a32b6556a26b05469336a0d4980c4ed3b8a93ac1785e3916eaf672519be28", "t": "Texto de ejemplo: aquí irá tu mensaje para el día 19 💛", "img": ""},
+{"d": 20, "h": "cc9cd68dc86a6ec171b43d01cdd0741fa0ae955d3fb7c27aaa21f22d697b2f6a", "t": "Texto de ejemplo: aquí irá tu mensaje para el día 20 💛", "img": ""},
+{"d": 21, "h": "7a0027aa3ef9af67ee7f99f1d8123405318b38f12c6691c22ab11a46613390c8", "t": "Texto de ejemplo: aquí irá tu mensaje para el día 21 💛", "img": ""},
+{"d": 22, "h": "f21623715f5b36d875cdc874004c1a8e8800ab1f443ebe4e96c6c51aac9bef01", "t": "Texto de ejemplo: aquí irá tu mensaje para el día 22 💛", "img": ""},
+{"d": 23, "h": "931d1b88fdcd10c95f82c2af6f7c8577387171ceb6489c4acabea736552f8ecc", "t": "Texto de ejemplo: aquí irá tu mensaje para el día 23 💛", "img": ""},
+{"d": 24, "h": "bb2a382274fa665fef4272cc1c392be9f83154a2f3a7b9351a91f082ea9a0357", "t": "Texto de ejemplo: aquí irá tu mensaje para el día 24 💛", "img": ""}
+];
+const TEST=location.hash==='#prueba-7k2q';
+const $=id=>document.getElementById(id);
+let saved={};try{saved=JSON.parse(localStorage.getItem('adv')||'{}')}catch(e){}
+function save(){try{localStorage.setItem('adv',JSON.stringify(saved))}catch(e){}}
+function norm(s){return s.toLowerCase().trim().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]/g,'')}
+async function sha(s){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}
+const CANDS=d=>{const a=[];['Dia','dia'].forEach(p=>['jpg','jpeg','png','webp','JPG','JPEG','PNG'].forEach(e=>a.push('fotos/'+p+d+'.'+e)));return a};
+function nx(el){const d=+el.dataset.d,i=+el.dataset.i+1,c=CANDS(d);if(i>=c.length){const f=document.createElement('div');f.className=el.dataset.fb;f.textContent=el.dataset.fb==='e'?'🥚':'📸';el.replaceWith(f);return}el.dataset.i=i;el.src=c[i]}
+function pic(d,cls,fb){return '<img class="'+cls+'" data-d="'+d+'" data-i="0" data-fb="'+fb+'" src="'+CANDS(d)[0]+'" alt="" onerror="nx(this)">'}
+const count=()=>DAYS.filter(x=>saved[x.d]).length;
+function show(v){['home','hatch','eggs'].forEach(k=>$(k).hidden=k!==v);window.scrollTo(0,0)}
+function drawHome(){const n=count();$('see').hidden=false;$('see').textContent='Ver mis huevos ('+(TEST?24:n)+')'}
+function drawEggs(newId){const g=$('grid');g.innerHTML='';const n=DAYS.filter(x=>TEST||saved[x.d]).length;
+$('cnt').textContent=n?'Has conseguido '+n+' de 24':'Todavía no tienes ninguno';
+DAYS.forEach(x=>{const ok=TEST||saved[x.d];const b=document.createElement('button');b.className='egg'+(ok?'':' lock');
+b.innerHTML=ok?pic(x.d,'','e')+'<i>'+x.d+'</i>'+(x.d===newId?'<em>¡Nuevo!</em>':''):'<div class="e">🔒</div><i>'+x.d+'</i>';
+if(ok)b.onclick=()=>openDay(x);g.appendChild(b)})}
+function closeM(){$('modal').classList.remove('on')}
+function openDay(x){$('box').innerHTML='<h2>Día '+x.d+' 💛</h2>'+pic(x.d,'photo','ph2')+'<p>'+(x.t||'')+'</p><button class="x" id="c">Cerrar</button>';$('modal').classList.add('on');$('c').onclick=closeM}
+function hatch(x){show('hatch');const sh=$('shell'),bn=$('born');
+sh.hidden=false;sh.className='shell wob';bn.hidden=true;$('hint').hidden=true;$('all').hidden=true;
+$('hmsg').textContent='¡Algo se mueve ahí dentro… 🥚';
+bn.innerHTML=pic(x.d,'','e')+'<i>'+x.d+'</i>';
+bn.onclick=()=>openDay(x);
+setTimeout(()=>{sh.classList.add('cracking');$('hmsg').textContent='¡Cuidado, está a punto de salir! 🐣'},1400);
+setTimeout(()=>{sh.classList.remove('wob');sh.classList.add('split')},2800);
+setTimeout(()=>{sh.hidden=true;bn.hidden=false;$('hmsg').textContent='¡Ha eclosionado! 🐥';$('hint').hidden=false;$('all').hidden=false},3500)}
+async function tryWord(){const w=$('w'),m=$('m'),v=norm(w.value);if(!v)return;
+let hs='';try{hs=await sha(v)}catch(e){}
+const x=DAYS.find(d=>d.h&&[].concat(d.h).includes(hs));
+if(!x){m.textContent='Mmm, esa no es… ¡prueba otra vez! 🐣';w.classList.remove('shake');void w.offsetWidth;w.classList.add('shake');return}
+m.textContent='';w.value='';saved[x.d]=1;save();drawHome();hatch(x)}
+$('go').onclick=tryWord;$('w').onkeydown=e=>{if(e.key==='Enter')tryWord()};
+$('see').onclick=()=>{drawEggs();show('eggs')};$('all').onclick=()=>{drawEggs();show('eggs')};$('back').onclick=()=>{drawHome();show('home')};
+$('modal').onclick=e=>{if(e.target.id==='modal')closeM()};
+for(let i=0;i<32;i++){const s=document.createElement('span');s.textContent='❄';s.style.left=Math.random()*100+'%';s.style.fontSize=(10+Math.random()*16)+'px';s.style.animationDuration=(7+Math.random()*9)+'s';s.style.animationDelay=(-Math.random()*14)+'s';$('snow').appendChild(s)}
+drawHome();
+</script></body></html>
